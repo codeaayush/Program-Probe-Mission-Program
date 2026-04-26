@@ -1,0 +1,53 @@
+# compiled output
+/dist
+/build
+*.tsbuildinfo
+
+# dependencies
+/node_modules
+
+# logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# tests & coverage
+/coverage
+/.nyc_output
+
+# IDEs
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# env & secrets (never commit)
+.env
+.env.*
+!.env.example
+
+# misc
+*.pem
+*.swp
+*.swo
+*~
+
+# local tool caches
+.npm-cache
+.eslintcache
+.turbo
+
+# debug / diagnostic
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
