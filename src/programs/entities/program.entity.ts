@@ -1,10 +1,12 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Probe } from '../../probes/entities/probe.entity';
 
 @Entity({ name: 'programs' })
 export class Program {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ApiProperty({ format: 'uuid' })
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;

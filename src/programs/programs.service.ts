@@ -20,7 +20,7 @@ export class ProgramsService {
     return this.programsRepository.find();
   }
 
-  async findOne(id: number): Promise<Program> {
+  async findOne(id: string): Promise<Program> {
     const program = await this.programsRepository.findOne({ where: { id } });
     if (!program) {
       throw new NotFoundException(`Program with id ${id} not found`);
@@ -28,7 +28,7 @@ export class ProgramsService {
     return program;
   }
 
-  async findProbes(id: number): Promise<Program> {
+  async findProbes(id: string): Promise<Program> {
     const program = await this.programsRepository.findOne({
       where: { id },
       relations: { probes: true },

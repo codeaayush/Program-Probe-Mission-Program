@@ -4,7 +4,7 @@ import {
   Get,
   HttpStatus,
   Param,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
 import {
@@ -40,14 +40,14 @@ export class ProgramsController {
   @Get(':id')
   @ApiOperation({ summary: 'Get one program by id' })
   @ApiResponse({ status: HttpStatus.OK, type: Program })
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.programsService.findOne(id);
   }
 
   @Get(':id/probes')
   @ApiOperation({ summary: 'Get a program with probes' })
   @ApiResponse({ status: HttpStatus.OK, type: Program })
-  findProbes(@Param('id', ParseIntPipe) id: number) {
+  findProbes(@Param('id', ParseUUIDPipe) id: string) {
     return this.programsService.findProbes(id);
   }
 }

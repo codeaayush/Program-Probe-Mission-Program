@@ -8,6 +8,9 @@ export class CreateProbeDto {
   @ApiProperty({ enum: ProbeType, example: ProbeType.Rover })
   type: ProbeType;
 
-  @ApiProperty({ example: 1 })
-  programId: number;
+  @ApiProperty({
+    format: 'uuid',
+    example: '550e8400-e29b-41d4-a716-446655440001',
+  })
+  programId: string;
 }

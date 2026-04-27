@@ -4,7 +4,7 @@ import {
   Get,
   HttpStatus,
   Param,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
 import {
@@ -40,14 +40,14 @@ export class ProbesController {
   @Get(':id')
   @ApiOperation({ summary: 'Get one probe by id' })
   @ApiResponse({ status: HttpStatus.OK, type: Probe })
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.probesService.findOne(id);
   }
 
   @Get(':id/missions')
   @ApiOperation({ summary: 'Get a probe with missions' })
   @ApiResponse({ status: HttpStatus.OK, type: Probe })
-  findMissions(@Param('id', ParseIntPipe) id: number) {
+  findMissions(@Param('id', ParseUUIDPipe) id: string) {
     return this.probesService.findMissions(id);
   }
 }

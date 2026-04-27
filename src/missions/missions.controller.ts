@@ -4,7 +4,7 @@ import {
   Get,
   HttpStatus,
   Param,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
 import {
@@ -40,7 +40,7 @@ export class MissionsController {
   @Get(':id')
   @ApiOperation({ summary: 'Get one mission by id' })
   @ApiResponse({ status: HttpStatus.OK, type: Mission })
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.missionsService.findOne(id);
   }
 }

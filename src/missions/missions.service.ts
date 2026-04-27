@@ -34,7 +34,7 @@ export class MissionsService {
     return this.missionsRepository.find({ relations: { probe: true } });
   }
 
-  async findOne(id: number): Promise<Mission> {
+  async findOne(id: string): Promise<Mission> {
     const mission = await this.missionsRepository.findOne({
       where: { id },
       relations: { probe: true },

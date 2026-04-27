@@ -34,7 +34,7 @@ export class ProbesService {
     return this.probesRepository.find({ relations: { program: true } });
   }
 
-  async findOne(id: number): Promise<Probe> {
+  async findOne(id: string): Promise<Probe> {
     const probe = await this.probesRepository.findOne({
       where: { id },
       relations: { program: true },
@@ -45,7 +45,7 @@ export class ProbesService {
     return probe;
   }
 
-  async findMissions(id: number): Promise<Probe> {
+  async findMissions(id: string): Promise<Probe> {
     const probe = await this.probesRepository.findOne({
       where: { id },
       relations: { missions: true, program: true },

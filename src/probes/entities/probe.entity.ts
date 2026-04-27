@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   Entity,
@@ -17,8 +18,9 @@ export enum ProbeType {
 
 @Entity({ name: 'probes' })
 export class Probe {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ApiProperty({ format: 'uuid' })
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
