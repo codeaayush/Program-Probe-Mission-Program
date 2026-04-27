@@ -4,6 +4,13 @@ import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
 
+type TokenResponseBody = {
+  accessToken: string;
+  expiresIn: number;
+  expiresAt: string;
+  tokenType: string;
+};
+
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
 
@@ -26,10 +33,11 @@ describe('AppController (e2e)', () => {
       .send({ username: 'admin', password: 'admin' })
       .expect(200);
 
-    expect(res.body.accessToken).toBeDefined();
-    expect(res.body.expiresIn).toBe(3600);
-    expect(res.body.expiresAt).toBeDefined();
-    expect(res.body.tokenType).toBe('Bearer');
+    const body = res.body as TokenResponseBody;
+    expect(body.accessToken).toBeDefined();
+    expect(body.expiresIn).toBe(3600);
+    expect(body.expiresAt).toBeDefined();
+    expect(body.tokenType).toBe('Bearer');
   });
 
   it('/ (GET) with Bearer token returns hello', async () => {
@@ -37,9 +45,10 @@ describe('AppController (e2e)', () => {
       .post('/auth/token')
       .send({ username: 'admin', password: 'admin' });
 
+    const tokenBody = tokenRes.body as TokenResponseBody;
     return request(app.getHttpServer())
       .get('/')
-      .set('Authorization', `Bearer ${tokenRes.body.accessToken}`)
+      .set('Authorization', `Bearer ${tokenBody.accessToken}`)
       .expect(200)
       .expect('Hello World!');
   });
