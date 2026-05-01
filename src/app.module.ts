@@ -9,6 +9,8 @@ import { Mission } from './missions/entities/mission.entity';
 import { MissionsModule } from './missions/missions.module';
 import { Probe } from './probes/entities/probe.entity';
 import { ProbesModule } from './probes/probes.module';
+import { IsProgramIdExistsConstraint } from './common/validators/is-program-id-exists.constraint';
+import { IsProbeIdExistsConstraint } from './common/validators/is-probe-id-exists.constraint';
 import { Program } from './programs/entities/program.entity';
 import { ProgramsModule } from './programs/programs.module';
 
@@ -26,6 +28,11 @@ import { ProgramsModule } from './programs/programs.module';
     MissionsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }],
+  providers: [
+    AppService,
+    IsProgramIdExistsConstraint,
+    IsProbeIdExistsConstraint,
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+  ],
 })
 export class AppModule {}
