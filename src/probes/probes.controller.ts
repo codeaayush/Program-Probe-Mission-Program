@@ -37,6 +37,20 @@ export class ProbesController {
     return this.probesService.findAll();
   }
 
+  @Get('reports/mission-count')
+  @ApiOperation({ summary: 'Mission count per probe' })
+  @ApiResponse({ status: HttpStatus.OK })
+  missionCountPerProbe() {
+    return this.probesService.missionCountPerProbe();
+  }
+
+  @Get('reports/mars-missions')
+  @ApiOperation({ summary: 'Probes with Mars missions' })
+  @ApiResponse({ status: HttpStatus.OK })
+  probesWithMarsMissions() {
+    return this.probesService.probesWithMarsMissions();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Get one probe by id' })
   @ApiResponse({ status: HttpStatus.OK, type: Probe })

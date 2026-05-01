@@ -37,6 +37,22 @@ export class ProgramsController {
     return this.programsService.findAll();
   }
 
+  @Get('reports/successful-missions')
+  @ApiOperation({
+    summary: 'Successful missions by program (Program -> Probe -> Mission)',
+  })
+  @ApiResponse({ status: HttpStatus.OK })
+  successfulMissionsByProgram() {
+    return this.programsService.successfulMissionsByProgram();
+  }
+
+  @Get('reports/failed-missions')
+  @ApiOperation({ summary: 'Distinct programs with failed missions' })
+  @ApiResponse({ status: HttpStatus.OK })
+  programsWithFailedMissions() {
+    return this.programsService.programsWithFailedMissions();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Get one program by id' })
   @ApiResponse({ status: HttpStatus.OK, type: Program })
